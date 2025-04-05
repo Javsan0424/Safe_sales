@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Menu() {
     return (
-        <div className="bg-gray-300 w-50 shadow-lg shadow-black">
+        <div className="bg-gray-300 w-50 h-screen shadow-lg shadow-black">
             <div className="mt-10 ml-8">
                 <ol className="space-y-20">
                     <div>Company Logo</div>
