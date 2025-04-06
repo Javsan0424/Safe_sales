@@ -18,6 +18,7 @@ class DataController{
     getProductos = (_req: Request, res: Response) => this.handleQuery('SELECT * FROM Productos', res);
     getNegociaciones = (_req: Request, res: Response) => this.handleQuery('SELECT * FROM Negociaciones', res);
     getEmpresas = (_req: Request, res: Response) => this.handleQuery('SELECT * FROM Empresas', res);
+    
 
     loginUser = (req: Request, res: Response): void => {
         const { email, password }: { email?: string; password?: string } = req.body;
@@ -27,7 +28,7 @@ class DataController{
             return;
         }
 
-        const SQL_QUERY = 'SELECT * FROM Usuarios WHERE email = ? AND password = ?';
+        const SQL_QUERY = 'SELECT * FROM Cuenta_Valida WHERE email = ? AND password = ?';
 
         db.query(SQL_QUERY, [email, password], (err, result) => {
             if (err) {
