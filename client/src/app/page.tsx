@@ -8,34 +8,38 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true); 
+    setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3001/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+        const response = await fetch("http://localhost:3001/api/login", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({ email, password }),
+        });
 
-      if (response.ok) {
         const data = await response.json();
-        if (data.success) {
-          router.push("/Page1");
-        } else {
-          alert(data.message || "Credenciales incorrectas");
+
+        if (!response.ok) {
+            throw new Error(data.message || "Login failed");
         }
-      } else {
-        alert("Error al conectar con el servidor");
-      }
+
+        if (data.success) {
+            
+            console.log("Logged in user:", data.user);
+            router.push("/Page1");
+        } else {
+            alert(data.message || "Invalid credentials");
+        }
     } catch (error) {
-      console.error("Error en la solicitud: ", error);
-      alert("Error en la solicitud");
+        alert(error instanceof Error ? error.message : "Login failed");
     } finally {
-      setLoading(false); 
+        setLoading(false);
     }
-  };
+};
 
   return (
     <div className="flex items-center justify-center h-screen bg-white-200">
