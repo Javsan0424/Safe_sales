@@ -4,7 +4,16 @@ import axios from 'axios';
 import Menu from "../Components/navegar";
 
 export default function Productos() {
-    const [productos, setProductos] = useState([]);
+    type Producto = {
+        Producto_ID: number;
+        Nombre: string;
+        Precio: number;
+        Descripcion: string;
+        Stock: number;
+        Categoria: string;
+    };
+
+    const [productos, setProductos] = useState<Producto[]>([]);
 
     useEffect(() => {
         const fetchProductos = async () => {

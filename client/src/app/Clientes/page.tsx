@@ -4,15 +4,24 @@ import axios from 'axios';
 import Menu from "../Components/navegar";
 
 export default function Clientes() {
-    const [clientes, setClientes] = useState([]);
+    type Cliente = {
+        Cliente_ID: number;
+        Nombre: string;
+        Email: string;
+        Telefono: string;
+        Empresa_ID: number;
+    };
+    
+    const [clientes, setClientes] = useState<Cliente[]>([]);
+    
 
     useEffect(() => {
         const fetchClientes = async () => {
             try {
                 const response = await axios.get('http://localhost:3001/api/clientes');
-                console.log("Datos recibidos:", response.data); // Depuración
+                console.log("Datos recibidos:", response.data); 
 
-                // Asegúrate de que response.data sea un array o ajusta según la estructura
+                
                 if (Array.isArray(response.data)) {
                     setClientes(response.data);
                 } else if (response.data.clientes && Array.isArray(response.data.clientes)) {

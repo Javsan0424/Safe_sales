@@ -4,7 +4,14 @@ import axios from 'axios';
 import Menu from "../Components/navegar";
 
 export default function Ventas() {
-    const [ventas, setVentas] = useState([]);
+    type Venta = {
+        Ventas_ID: number;
+        Cliente_ID: number;
+        Producto_ID: number;
+        Comision: number;
+    }
+
+    const [ventas, setVentas] = useState<Venta[]>([]);
 
     useEffect(() => {
         const fetchVentas = async () => {
@@ -29,7 +36,7 @@ export default function Ventas() {
         <div className="h-screen flex">
             <Menu />
             <main className="flex-1 p-10">
-                <div className="text-5xl"> Lista de Negociaciones </div>
+                <div className="text-5xl"> Lista de Ventas </div>
                 <table className="min-w-full bg-white border border-gray-300 mt-5">
                     <thead>
                         <tr>
