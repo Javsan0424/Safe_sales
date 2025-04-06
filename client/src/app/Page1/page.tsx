@@ -7,7 +7,7 @@ export default function Tablero() {
     type Summary = {
         title: string;
         count: number;
-        recent: string; // For a brief summary (e.g., most recent entry or other relevant data)
+        recent: string; 
     };
 
     const [empresasSummary, setEmpresasSummary] = useState<Summary | null>(null);
@@ -16,18 +16,18 @@ export default function Tablero() {
     const [productosSummary, setProductosSummary] = useState<Summary | null>(null);
     const [negociacionesSummary, setNegociacionesSummary] = useState<Summary | null>(null);
 
-    // Fetch data for each summary
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch summaries for each category
+                
                 const responseEmpresas = await axios.get("http://localhost:3001/api/empresas");
                 const responseClientes = await axios.get("http://localhost:3001/api/clientes");
                 const responseVentas = await axios.get("http://localhost:3001/api/ventas");
                 const responseProductos = await axios.get("http://localhost:3001/api/productos");
                 const responseNegociaciones = await axios.get("http://localhost:3001/api/negociaciones");
 
-                // Create summary for each category
+                
                 setEmpresasSummary({
                     title: "Empresas",
                     count: responseEmpresas.data.length,

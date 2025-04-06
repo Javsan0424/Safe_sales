@@ -11,10 +11,21 @@ class DataHttphHandler{
     };
 
     ventasHandler = dataController.getVentas;
+
     clientesHandler = dataController.getClientes;
+    addClienteHandler = dataController.addCliente;
+    deleteClienteHandler = dataController.deleteCliente;
+
     productosHandler = dataController.getProductos;
+
     negociacionesHandler = dataController.getNegociaciones;
+    updateNegociacionesHandler = (req: Request, res: Response) => dataController.updateNegociacion(req, res);
+
+
     empresasHandler = dataController.getEmpresas;
+    addempresaHandler = dataController.addEmpresa;
+    deleteempresaHandler = dataController.deleteEmpresa;
+
     loginHandler = dataController.loginUser;
 }
 
